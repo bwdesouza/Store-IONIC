@@ -1,0 +1,51 @@
+page-detalhes-livro {
+
+    .boxhead a, .avaliable a {
+        text-decoration: none;
+    }
+
+    .boxhead{
+        margin-top: 5px;
+    }
+
+    .preco {
+        font-size: 11px !important;
+    }
+
+    .nome-livro {
+        margin-top: -10px !important;
+    }
+
+    .autor-livro {
+        margin-top: -7px !important;
+    }
+
+    .row-preco{
+        margin-top: -10px !important;
+    }
+
+    .descricao { 
+        border: 1px solid;
+        padding: 10px;
+        border-color: rgba(0,0,0,.3);
+    }
+
+    .recursos-detalhes{
+        border: 1px solid;
+        padding: 10px;
+        border-color: rgba(0,0,0,.3);
+    }
+
+    .button-style{        
+        height: 1.5em;
+    }
+
+    .button-color-leitura{
+        background-color: #b11f25;        
+    }
+
+    .button-color-compra{
+        background-color: #ff8c00;        
+    }
+
+}

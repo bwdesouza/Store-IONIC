@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+      <ion-buttons start>
+        <button ion-button icon-only (click)="sincronizarConta()">
+          <ion-icon name="sync"></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-searchbar class="search" placeholder="Pesquisar Livros" #search (keyup)="pesquisaLivro(search.value)"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-refresher (ionRefresh)="atualizarTela($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Puxe para atualizar..." refreshingSpinner="circles" refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid *ngIf="lstLivros.length < 1">
+    <ion-item-divider></ion-item-divider>
+    <ion-row>
+      <p>Não existem livros para serem listados!</p>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="exibicaoGridLst$">
+    <div *ngIf="lstLivros && lstLivros.length > 0">
+      <div *ngFor="let livroLt of lstLivros">
+        <ion-item-group>
+          <ion-item-divider color="light">{{livroLt[0].categoria.descricao}}</ion-item-divider>
+          <ion-item *ngFor="let livro of livroLt">
+            <ion-thumbnail item-start>
+              <img (click)="detalhesLivro(livro)" src="data:image/png;base64,{{livro.capaString}}" class="img-grid">
+            </ion-thumbnail>
+            <div (click)="detalhesLivro(livro)">
+              <h2>{{livro.titulo}}</h2>
+              <h3>{{livro.subTitulo}}</h3>
+              <p>
+                <small>Autor: {{livro.autoria}}</small>
+              </p>
+            </div>
+          </ion-item>
+        </ion-item-group>
+      </div>
+    </div>
+  </ion-list>
+
+  <div *ngIf="!exibicaoGridLst$">
+    <div *ngIf="lstLivrosGrid && lstLivrosGrid.length > 0">
+      <ion-row responsive-sm *ngFor="let livroGrid of lstLivrosGrid">
+        <ion-col width-10 *ngFor="let livro of livroGrid">
+          <img (click)="detalhesLivro(livro)" class="imagem" src="data:image/png;base64,{{livro.capaString}}" />
+        </ion-col>
+        <ion-col width-10 *ngIf="falta1Img && livroGrid[livroGrid.length -1].id == ultimoLivro">
+          <img class="imagem img-opacity" src="../../assets/imgs/empyt.png" />
+        </ion-col>
+        <ion-col width-10 *ngIf="falta2Img && livroGrid[livroGrid.length -1].id == ultimoLivro">
+          <img class="imagem img-opacity" src="../../assets/imgs/empyt.png" />
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+</ion-content>

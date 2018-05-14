@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Meus Livros
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-content padding>
+
+    <p>Please choose a book to view:</p>
+    <ion-list>
+      <ion-item *ngFor="let book of livroLerAgora" (tap)="showLivro(book)">{{book.nome}}</ion-item>
+    </ion-list>
+  </ion-content> -->
+
+<ion-content padding>
+
+
+  <ion-refresher (ionRefresh)="atualizarTela($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Puxe para atualizar..." refreshingSpinner="circles" refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid *ngIf="!gridVazia">
+    <ion-row *ngFor="let livro of livroLerAgora">
+      <ion-col col-4>
+        <img class="imagem" (click)="detalhesLivro(livro)" src="data:image/png;base64,{{livro.capa}}" />
+      </ion-col>
+      <ion-col col-8>
+        <ion-grid>
+          <ion-row class="nome-livro">
+            <ion-col>
+              <span style="font-weight: bold;">{{livro.nome}}</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="autor-livro">
+            <ion-col>
+              {{livro.autorLivro}}
+            </ion-col>
+          </ion-row>
+
+          <br *ngIf="!telaPequena" />
+          <br *ngIf="!telaPequena" />
+
+          <ion-row>
+            <ion-col col-8>
+              <button ion-button full class="button-color-leitura" (click)="showLivro(livro)">
+                <ion-icon name="cafe"></ion-icon>
+                <small>
+                  &nbsp;LER AGORA
+                </small>
+              </button>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button full class="button-color-leitura" (click)="showConfirm(livro)">
+                <ion-icon name="trash"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-item-divider></ion-item-divider>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="gridVazia">
+    <ion-item-divider></ion-item-divider>
+    <ion-row>
+      <p>Não existem livros para serem listados!</p>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

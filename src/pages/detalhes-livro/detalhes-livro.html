@@ -1,0 +1,136 @@
+<!--
+  Generated template for the DetalhesLivroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid *ngIf="livro">
+    <ion-row>
+      <ion-col col-5>
+        <img class="imagem" src="data:image/png;base64,{{livro.capaString}}" />
+      </ion-col>
+      <ion-col col-7>
+        <ion-grid>
+          <ion-row class="nome-livro">
+            <ion-col>
+              <span style="font-weight: bold;">{{livro.titulo}}</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="autor-livro">
+            <ion-col>
+              <div class="boxhead">
+                <a href="#">{{livro.autoria}}</a>
+              </div>
+              <div class="avaliable">
+                <ion-icon name="star" style="color: darkorange;"></ion-icon>
+                <ion-icon name="star" style="color: darkorange;"></ion-icon>
+                <ion-icon name="star" style="color: darkorange;"></ion-icon>
+                <ion-icon name="star" style="color: darkorange;"></ion-icon>
+                <ion-icon name="star" style="color: darkorange;"></ion-icon>
+                <a href="#">(37)</a>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <br/>
+
+          <ion-row class="row-preco">
+            <ion-col>
+              <span class="preco">Preço: </span>
+            </ion-col>
+            <ion-col>
+              <span class="preco" style="font-weight: bold;">R$ {{livro.precoDigital}}</span>
+            </ion-col>
+          </ion-row>
+
+          <br *ngIf="!telaPequena"/>
+          <br *ngIf="!telaPequena"/>
+          <br *ngIf="tenhoEsteLivro && !telaPequena" />
+          <br *ngIf="tenhoEsteLivro && !telaPequena" />
+
+          <ion-row *ngIf="!tenhoEsteLivro">
+            <ion-col col-12>
+              <button color="btn-comprar-agora" class="button-style button-color-compra" style="color:black !important" (click)="downloadLivro(livro)"
+                icon-start ion-button full>
+                <ion-icon name="download"></ion-icon>
+                <small>
+                  BAIXAR LIVRO
+                </small>
+              </button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="!tenhoEsteLivro">
+            <ion-col col-12>
+              <button ion-button full class="button-style button-color-leitura" (click)="showLivro(livro,true)">
+                <ion-icon name="eye"></ion-icon>
+                <small>
+                  &nbsp; AMOSTRA GRATUITA
+                </small>
+              </button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="tenhoEsteLivro">
+            <ion-col col-12>
+              <button ion-button full class="button-style button-color-leitura" (click)="showLivro(livro,false)">
+                <ion-icon name="cafe"></ion-icon>
+                <small>
+                  &nbsp; LER AGORA
+                </small>
+              </button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div style="font-weight: bold;font-size: 18px;padding-bottom: 10px;">
+          SOBRE ESTE LIVRO
+        </div>
+        <div class="descricao">
+          <span style="font-weight: bold;">SINOPSE</span>
+          <p>
+            {{livro.sinopse}}
+          </p>
+        </div>
+        <div class="recursos-detalhes">
+          <span style="font-weight: bold;">RECURSOS & DETALHES</span>
+          <br/>
+          <br/>
+          <span style="font-weight: bold;">
+            <small>Data da publicação:</small>
+          </span>
+          <br/>
+          <span>{{livro.dtaCadastro}}</span>
+          <br/>
+          <span style="font-weight: bold;">
+            <small>Idioma</small>
+          </span>
+          <br/>
+          <span>{{livro.idioma.descricao}}</span>
+          <br/>
+          <span style="font-weight: bold;">
+            <small>ISBN Digital</small>
+          </span>
+          <br/>
+          <span>{{livro.isbnDigital}}</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,28 @@
+page-home {
+
+    .slides {
+      height: auto !important;
+      padding: 5px;
+  }
+
+  .swiper-slide img {
+      margin-left: -70% !important;
+      max-width: 34% !important;
+  }
+
+  .search
+  {
+      box-shadow: none;
+      padding: 6px 14px 6px 30px;
+      outline: 0;
+  }
+
+  .img-grid{
+    width: 60px !important;
+    height: 80px !important;
+  }
+
+  .img-opacity{      
+    opacity: 0.0;
+  }
+}
